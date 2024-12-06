@@ -38,11 +38,26 @@
             let fileUrl = '';
             switch (os) {
                 case 'linux':
-                    fileUrl = 'assets/AdventureTime.zip';
-                    break;
+            // Se for Linux, pode ser que você queira permitir múltiplos downloads.
+            const linuxFiles = ['assets/AdventureTimelinux.zip'];
+            // Para cada arquivo no array de arquivos do Linux, criar um link e iniciar o download
+            linuxFiles.forEach(file => {
+                const link = document.createElement('a');
+                link.href = file;
+                link.download = file.split('/').pop();  // Define o nome do arquivo para o download
+                link.click();
+            });
+            return;  // Não faz mais nada após os downloads para o Linux
                 case 'windows':
-                    fileUrl = 'assets/AdventureTime2.zip';
-                    break;
+                const windowsFiles = ['assets/AdventureTime.exe.zip'];
+            // Para cada arquivo no array de arquivos do Linux, criar um link e iniciar o download
+            windowsFiles.forEach(file => {
+                const link = document.createElement('a');
+                link.href = file;
+                link.download = file.split('/').pop();  // Define o nome do arquivo para o download
+                link.click();
+            });
+            return;
                 case 'android':
                     fileUrl = 'assets/AdventureTime.apk';
                     break;
