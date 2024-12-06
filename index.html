@@ -20,7 +20,7 @@
 
         // Exibir o pop-up após um determinado tempo (por exemplo, 5 segundos)
         window.onload = function() {
-            setTimeout(openPopup, 1); // Abrir após 5 segundos
+            setTimeout(openPopup, 5000); // Abrir após 5 segundos
         };
 
         // Função para exibir o modal de download
@@ -38,32 +38,17 @@
             let fileUrl = '';
             switch (os) {
                 case 'linux':
-            // Se for Linux, pode ser que você queira permitir múltiplos downloads.
-            const linuxFiles = ['assets/AdventureTimelinux.zip'];
-            // Para cada arquivo no array de arquivos do Linux, criar um link e iniciar o download
-            linuxFiles.forEach(file => {
-                const link = document.createElement('a');
-                link.href = file;
-                link.download = file.split('/').pop();  // Define o nome do arquivo para o download
-                link.click();
-            });
-            return;  // Não faz mais nada após os downloads para o Linux
+                    fileUrl = 'assets/AdventureTimelinux.zip'; // Link para o arquivo do Linux
+                    break;
                 case 'windows':
-                const windowsFiles = ['assets/AdventureTime.exe.zip'];
-            // Para cada arquivo no array de arquivos do Linux, criar um link e iniciar o download
-            windowsFiles.forEach(file => {
-                const link = document.createElement('a');
-                link.href = file;
-                link.download = file.split('/').pop();  // Define o nome do arquivo para o download
-                link.click();
-            });
-            return;
+                    fileUrl = 'assets/AdventureTime.exe.zip'; // Link para o arquivo do Windows
+                    break;
                 case 'android':
-                    fileUrl = 'assets/AdventureTime.apk';
+                    fileUrl = 'assets/AdventureTime.apk'; // Link para o arquivo do Android
                     break;
             }
 
-            // Inicia o download
+            // Inicia o download se o arquivo estiver definido
             if (fileUrl) {
                 // Criar um link temporário
                 const link = document.createElement('a');
@@ -72,7 +57,6 @@
                 link.click();
             }
         }
-
 
         // Fechar o modal ou o popup se o usuário clicar fora deles
         window.onclick = function(event) {
@@ -116,10 +100,10 @@
         </div>
     </div>
     
-    <!-- Modal (Popup) -->
+    <!-- Modal (Popup) de download -->
     <div id="downloadModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
+            <span class="close-btn" onclick="closeDownloadModal()">&times;</span>
             <h3>Escolha o Sistema Operacional</h3>
             <button class="os-button" onclick="download('linux')"><i class="fa-brands fa-linux"></i>Linux</button>
             <button class="os-button" onclick="download('windows')"><i class="fa-brands fa-windows"></i>Windows</button>
@@ -127,6 +111,7 @@
         </div>
     </div>
 
+    <!-- Seção de outros itens -->
     <div class="container">
         <div class="item item-list">
             <div class="item-imagem">
@@ -144,60 +129,10 @@
                 </a>
             </footer>
         </div>
-
-        <div class="item item-list">
-            <div class="item-imagem">
-                <img src="assets/estoque/estoque1.png" alt="Imagem do Controle de Estoque">
-            </div>
-            <div class="item-titulo-container">
-                <h2 class="item-titulo">Controle de Estoque</h2>
-            </div>
-            <div class="item-conteudo">
-                <p>Sistema de gestão integrado para um comércio, utilizando Django e Python, focado na otimização de processos de vendas, controle de estoque e gerenciamento financeiro. Este projeto inclui um dashboard interativo que oferece uma visão abrangente do desempenho do negócio.</p>
-            </div>
-            <footer class="item-footer">
-                <a class="item-acao button button-dark button-full-width" href="https://gerenciadorestoque.pythonanywhere.com">
-                    <span>Acessar</span>
-                </a>
-            </footer>
-        </div>
-
-        <div class="item item-list">
-            <div class="item-imagem">
-                <img src="assets/biblioteca/biblioteca1.png" alt="biblioteca">
-            </div>
-            <div class="item-titulo-container">
-                <h2 class="item-titulo">Biblioteca</h2>
-            </div>
-            <div class="item-conteudo">
-                <p>Sistema de gestão de livros utilizando Django e Python, projetado para facilitar a administração de uma biblioteca ou acervo de livros. O sistema oferece uma interface amigável e intuitiva, permitindo aos usuários explorar, emprestar e gerenciar livros de maneira eficiente.</p>
-            </div>
-            <footer class="item-footer">
-                <a class="item-acao button button-dark button-full-width" href="https://bibliotecaschledorn.pythonanywhere.com">
-                    <span>Acessar</span>
-                </a>
-            </footer>
-        </div>
-
-        <div class="item item-list">
-            <div class="item-imagem">
-                <img src="" alt="">
-            </div>
-            <div class="item-titulo-container">
-                <h2 class="item-titulo">Garra mecanica </h2>
-            </div>
-            <div class="item-conteudo">
-                <p>Neste projeto, desenvolvi um sistema que integra controle de servos com reconhecimento de gestos usando visão computacional. Utilizando a biblioteca MediaPipe, o programa detecta a posição da mão e traduz esses movimentos em comandos para controlar quatro servos</p>
-            </div>
-            <footer class="item-footer">
-                <a class="item-acao button button-dark button-full-width" href="https://github.com/KauanMonteiro/gesture-controlled-mechanical-arm">
-                    <i class="fa-brands fa-github"></i>
-                    <span>Acessar código-fonte</span>
-                </a>
-            </footer>
-        </div>
+        <!-- Adicione os outros itens aqui -->
     </div>
 
+    <!-- Popup de doação -->
     <div id="donation-popup" class="popup">
         <div class="popup-content">
             <span class="close" onclick="closePopup()">&times;</span>
